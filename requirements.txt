@@ -1,0 +1,40 @@
+# ============================================
+# AI Doctor 프로젝트 필수 라이브러리
+# ============================================
+
+# PyTorch 기반 모델 (MedGemma)
+torch>=2.0.0
+transformers>=4.40.0
+accelerate>=0.27.0
+bitsandbytes>=0.42.0
+
+# TensorFlow 기반 모델 (HeAR, HAI-DEF)
+tensorflow>=2.13.0
+tensorflow-text>=2.13.0
+
+# Hugging Face Hub
+huggingface_hub>=0.20.0
+
+# 이미지 처리 (CT, X-ray)
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# 오디오 처리 (기침, 호흡음)
+librosa>=0.10.0
+soundfile>=0.12.0
+
+# 데이터 처리 및 분석
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# 시각화
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 유틸리티
+tqdm>=4.65.0
+
+# Jupyter Notebook 지원 (선택사항)
+# jupyter>=1.0.0
+# ipykernel>=6.25.0

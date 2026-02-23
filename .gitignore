@@ -1,0 +1,68 @@
+# ============================================
+# Large datasets (too large for GitHub)
+# ============================================
+data/
+
+# ============================================
+# Model weights & checkpoints (use HuggingFace Hub)
+# ============================================
+test/ct_lora_results/
+test/xray_lora_results/
+test/cxr_results/
+
+# Binary embedding/model files
+**/*.npy
+**/*.h5
+**/*.pkl
+**/*.pt
+**/*.bin
+**/*.safetensors
+
+# ============================================
+# Runtime / user data
+# ============================================
+webapp/data/uploads/
+webapp/data/*.db
+webapp/data/*.sqlite
+
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+env/
+.venv/
+
+# ============================================
+# Environment / secrets
+# ============================================
+.env
+.env.*
+*.key
+config/secrets.py
+
+# ============================================
+# OS / editor
+# ============================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Backup files
+*.backup
+*_backup_*/
+frontend_backup_*/

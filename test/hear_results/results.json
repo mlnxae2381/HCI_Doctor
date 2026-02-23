@@ -1,0 +1,18 @@
+{
+  "audio_type": "cough-heavy",
+  "total_samples": 4826,
+  "train_samples": 3378,
+  "val_samples": 724,
+  "test_samples": 724,
+  "test_accuracy": 0.7265193370165746,
+  "confusion_matrix": [
+    [
+      437,
+      82
+    ],
+    [
+      116,
+      89
+    ]
+  ]
+}

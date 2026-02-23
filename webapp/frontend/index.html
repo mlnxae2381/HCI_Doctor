@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI DocTor - AI Medical Diagnosis Assistant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo" data-link style="text-decoration: none; cursor: pointer;">
+                    <i class="fas fa-stethoscope"></i>
+                    <h1>HCI DocTor</h1>
+                </a>
+                <nav class="nav">
+                    <a href="/" class="nav-link active" data-link>Home</a>
+                    <a href="/community" class="nav-link" data-link>Community</a>
+                    <a href="/about" class="nav-link" data-link>About</a>
+                    <a href="/login" class="nav-link" data-link style="margin-left: auto;">Login</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main" id="app-container">
+        <!-- 홈 페이지 -->
+        <section id="home" class="page active">
+            <div class="container">
+                <!-- 메인 대시보드 레이아웃 -->
+                <div class="dashboard-layout">
+                    <!-- 좌측 메인 콘텐츠 -->
+                    <div class="dashboard-main">
+                        <!-- 시스템 상태 배지 -->
+                        <div class="system-badge">
+                            <span class="badge-status"></span>
+                            SYSTEM_ACTIVE // STABLE
+                        </div>
+
+                        <!-- 히어로 타이틀 -->
+                        <h1 class="dashboard-title">
+                            CLINICAL <span class="highlight">COLLABORATION</span><br>
+                            MEETS AI LOGIC
+                        </h1>
+                        <p class="dashboard-subtitle">
+                            A clean, data-driven environment for high-precision diagnostic analysis
+                            and expert medical peer review. Powered by MedGemma &amp; HeAR.
+                        </p>
+                    </div>
+
+                    <!-- 우측 사이드바 -->
+                    <div class="dashboard-sidebar">
+                        <div class="sidebar-metrics">
+                            <h4>SYSTEM METRICS</h4>
+
+                            <!-- 메트릭 카드 -->
+                            <div class="metric-card">
+                                <div class="metric-label">ACTIVE MODELS</div>
+                                <div class="metric-label-sub">MULTIMODAL ENSEMBLE</div>
+                                <div class="metric-value" id="metric-models">03</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-label">CT ACCURACY</div>
+                                <div class="metric-label-sub">MEDGEMMA_LORA</div>
+                                <div class="metric-value" id="metric-accuracy">87.4%</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-label">AUDIO ACCURACY</div>
+                                <div class="metric-label-sub">HEAR_MODEL</div>
+                                <div class="metric-value" id="metric-audio">96.7%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최근 분석 기록 -->
+                <div class="recent-analyses-section">
+                    <div class="recent-header">
+                        <h4><i class="fas fa-history"></i> RECENT ANALYSES</h4>
+                        <a href="/community/feed" class="link-more" data-link>COMMUNITY FEED →</a>
+                    </div>
+                    <div id="recent-analyses-list">
+                        <div class="log-empty">
+                            <i class="fas fa-search"></i>
+                            <p>No analysis history — start with a diagnostic card below</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 분석 서비스 카드 -->
+                <div class="services">
+                    <h3 class="section-title">Diagnostic Modules</h3>
+                    <div class="diagnostic-grid">
+                        <!-- CT 분석 -->
+                        <div class="diagnostic-card ct-card" data-service="ct" onclick="router.navigateTo('/analysis/ct')" style="cursor: pointer;">
+                            <div class="card-header">
+                                <div class="card-badge-mode">ACTIVE</div>
+                                <div class="card-confidence" id="card-acc-ct">87.35% ACC</div>
+                            </div>
+                            <div class="card-analysis-type">
+                                <div class="analysis-number">01</div>
+                                <h4 class="analysis-title">AXIAL LUNG CT<br>ANALYSIS</h4>
+                            </div>
+                            <p class="card-analysis-desc">
+                                Volumetric analysis for early lung cancer detection.<br>3-class classification: Normal · Benign · Malignant.
+                            </p>
+                            <div class="card-meta">
+                                <span class="meta-item">MODEL: MedGemma LoRA</span>
+                                <span class="meta-status">3-CLASS</span>
+                            </div>
+                            <button class="btn-analysis-start" onclick="event.stopPropagation(); openAnalysis('ct')">
+                                ANALYZE CT IMAGE
+                            </button>
+                        </div>
+
+                        <!-- X-ray 분석 -->
+                        <div class="diagnostic-card xray-card" data-service="xray" onclick="router.navigateTo('/analysis/xray')" style="cursor: pointer;">
+                            <div class="card-header">
+                                <div class="card-badge-mode">ACTIVE</div>
+                                <div class="card-confidence" id="card-acc-xray">67.21% ACC</div>
+                            </div>
+                            <div class="card-analysis-type">
+                                <div class="analysis-number">02</div>
+                                <h4 class="analysis-title">CHEST PA X-RAY<br>ANALYSIS</h4>
+                            </div>
+                            <p class="card-analysis-desc">
+                                Automated chest X-ray abnormality detection.<br>Binary classification: Normal · Abnormal.
+                            </p>
+                            <div class="card-meta">
+                                <span class="meta-item">MODEL: MedGemma LoRA</span>
+                                <span class="meta-status">BINARY</span>
+                            </div>
+                            <button class="btn-analysis-start" onclick="event.stopPropagation(); openAnalysis('xray')">
+                                ANALYZE X-RAY
+                            </button>
+                        </div>
+
+                        <!-- 호흡음 분석 -->
+                        <div class="diagnostic-card audio-card" data-service="breathing" onclick="router.navigateTo('/analysis/acoustic')" style="cursor: pointer;">
+                            <div class="card-header">
+                                <div class="card-badge-mode">ACTIVE</div>
+                                <div class="card-confidence">96.74% ACC</div>
+                            </div>
+                            <div class="card-analysis-type">
+                                <div class="analysis-number">03</div>
+                                <h4 class="analysis-title">BREATH WAVEFORM<br>ANALYSIS</h4>
+                            </div>
+                            <p class="card-analysis-desc">
+                                Abnormal breathing pattern detection and lung function assessment.<br>HeAR-based acoustic signal analysis.
+                            </p>
+                            <div class="card-meta">
+                                <span class="meta-item">MODEL: HeAR</span>
+                                <span class="meta-status">BIO-ACOUSTIC</span>
+                            </div>
+                            <button class="btn-analysis-start" onclick="event.stopPropagation(); openAnalysis('breathing')">
+                                ANALYZE BREATHING
+                            </button>
+                        </div>
+
+                        <!-- 기침음 분석 -->
+                        <div class="diagnostic-card cough-card" data-service="cough" onclick="router.navigateTo('/analysis/acoustic')" style="cursor: pointer;">
+                            <div class="card-header">
+                                <div class="card-badge-mode">ACTIVE</div>
+                                <div class="card-confidence">96.74% ACC</div>
+                            </div>
+                            <div class="card-analysis-type">
+                                <div class="analysis-number">04</div>
+                                <h4 class="analysis-title">COUGH SOUND<br>ANALYSIS</h4>
+                            </div>
+                            <p class="card-analysis-desc">
+                                Respiratory disease screening via cough pattern analysis.<br>Detects COVID-19 and other anomalies.
+                            </p>
+                            <div class="card-meta">
+                                <span class="meta-item">MODEL: HeAR</span>
+                                <span class="meta-status">RESPIRATORY</span>
+                            </div>
+                            <button class="btn-analysis-start" onclick="event.stopPropagation(); openAnalysis('cough')">
+                                ANALYZE COUGH
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 커뮤니티 페이지 -->
+        <section id="community" class="page">
+            <div class="community-layout">
+                <!-- 좌측 다크 사이드바 -->
+                <aside class="community-sidebar">
+                    <div class="sidebar-brand">
+                        <h3>HCI DocTor</h3>
+                    </div>
+
+                    <nav class="sidebar-nav">
+                        <a href="#" id="sidebar-all" class="sidebar-link active" onclick="showAllPosts(); return false;">
+                            <i class="fas fa-th-large"></i>
+                            <span>All Posts</span>
+                        </a>
+                        <a href="#" id="sidebar-my" class="sidebar-link" onclick="showMyActivity(); return false;">
+                            <i class="fas fa-chart-line"></i>
+                            <span>My Activity</span>
+                        </a>
+                        <a href="#" id="sidebar-saved" class="sidebar-link" onclick="showSavedPosts(); return false;">
+                            <i class="fas fa-bookmark"></i>
+                            <span>Saved</span>
+                        </a>
+                        <a href="#" id="sidebar-settings" class="sidebar-link" onclick="openSettingsModal(); return false;">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- 우측 메인 콘텐츠 -->
+                <div class="community-main">
+                    <!-- 상단 헤더 -->
+                    <div class="community-header">
+                        <div class="community-nav" id="category-nav">
+                            <button class="nav-tab active" data-category="all" onclick="filterCommunity('all')">All</button>
+                            <button class="nav-tab" data-category="general" onclick="filterCommunity('general')">Free Board</button>
+                            <button class="nav-tab" data-category="health" onclick="filterCommunity('health')">Health Info</button>
+                            <button class="nav-tab" data-category="question" onclick="filterCommunity('question')">Q&amp;A</button>
+                            <button class="nav-tab" data-category="review" onclick="filterCommunity('review')">Diagnosis Reviews</button>
+                        </div>
+                        <button class="btn-write-post" onclick="openPostForm()">
+                            <i class="fas fa-plus"></i> Write Post
+                        </button>
+                    </div>
+
+                    <!-- 카드 그리드 -->
+                    <div class="community-grid" id="community-grid">
+                        <!-- 게시글 카드들이 여기에 로드됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 소개 페이지 -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2 class="section-title">About HCI DocTor</h2>
+                <div class="about-content">
+                    <div class="about-section">
+                        <h3><i class="fas fa-info-circle"></i> Service Overview</h3>
+                        <p>HCI DocTor is an AI-powered medical diagnosis assistance system built on Google's HAI-DEF (Health AI Developer Foundations) models. It analyzes medical imaging and acoustic data to provide early-stage health screening.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3><i class="fas fa-brain"></i> Technologies</h3>
+                        <ul class="tech-list">
+                            <li><strong>MedGemma 1.5-4b-it</strong> - CT and X-ray image analysis</li>
+                            <li><strong>HeAR (Health Acoustic Representations)</strong> - Cough and breathing sound analysis</li>
+                            <li><strong>LoRA (Low-Rank Adaptation)</strong> - Efficient model fine-tuning</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Disclaimer</h3>
+                        <p class="warning-text">
+                            <i class="fas fa-shield-alt"></i>
+                            This service is not a substitute for professional medical diagnosis and should be used for reference purposes only. Always consult a licensed medical professional for accurate diagnosis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 분석 모달 -->
+    <div id="analysis-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Analysis</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- 업로드 영역 -->
+                <div id="upload-area" class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Select a file or drag &amp; drop</p>
+                    <input type="file" id="file-input" accept="image/*,audio/*" onchange="handleFileSelect(event)">
+                    <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
+                        Select File
+                    </button>
+                </div>
+
+                <!-- 로딩 -->
+                <div id="loading-area" class="loading-area" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing...</p>
+                </div>
+
+                <!-- 결과 영역 -->
+                <div id="result-area" class="result-area" style="display: none;">
+                    <!-- 결과가 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div id="login-modal" class="modal login-modal">
+        <div class="login-backdrop"></div>
+        <div class="login-content">
+            <button class="modal-back-btn" onclick="closeLoginModal(); router.navigateTo('/');">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div class="login-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h2>HCI DocTor</h2>
+                <p class="login-portal">HEAR ANALYSIS PORTAL</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group-login">
+                    <label class="form-label-login">CLINICAL IDENTIFIER</label>
+                    <input type="email" id="login-email" class="form-input-login" placeholder="name@clinic.health">
+                </div>
+
+                <div class="form-group-login">
+                    <label class="form-label-login">SECURITY KEY</label>
+                    <div class="password-field">
+                        <input type="password" id="login-password" class="form-input-login" placeholder="••••••••••••">
+                        <a href="#" class="forgot-link">FORGOT?</a>
+                    </div>
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="trust-device">
+                    <label for="trust-device">Trust this device for 30 days</label>
+                </div>
+
+                <button type="submit" class="btn-initialize">
+                    INITIALIZE ANALYSIS <i class="fas fa-volume-up"></i>
+                </button>
+
+                <div class="login-divider">
+                    Don't have an account? <a href="#" onclick="router.navigateTo('/signup'); return false;">Sign Up</a>
+                </div>
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>ACOUSTIC ENGINE ONLINE V4.2.0</span>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                POWERED BY HEAR AI TECHNOLOGY
+            </div>
+        </div>
+    </div>
+
+    <!-- 회원가입 모달 -->
+    <div id="register-modal" class="modal login-modal">
+        <div class="login-backdrop"></div>
+        <div class="login-content">
+            <button class="modal-back-btn" onclick="closeRegisterModal(); router.navigateTo('/');">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div class="login-logo">
+                <div class="logo-icon register">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>HCI DocTor</h2>
+                <p class="login-portal">NEW ACCOUNT REGISTRATION</p>
+            </div>
+
+            <form id="register-form" class="login-form">
+                <div class="form-group-login">
+                    <label class="form-label-login">FULL NAME</label>
+                    <input type="text" id="register-name" class="form-input-login" placeholder="Dr. John Doe / Jane Smith">
+                </div>
+
+                <div class="form-group-login">
+                    <label class="form-label-login">CLINICAL EMAIL (SYSTEM ID)</label>
+                    <input type="email" id="register-email" class="form-input-login" placeholder="identifier@clinic.health">
+                </div>
+
+                <div class="form-group-login">
+                    <label class="form-label-login">USER TYPE</label>
+                    <select id="register-type" class="form-input-login">
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="researcher">Researcher</option>
+                    </select>
+                </div>
+
+                <div class="form-group-login">
+                    <label class="form-label-login">SECURITY KEY</label>
+                    <input type="password" id="register-password" class="form-input-login" placeholder="Min. 12 characters">
+                </div>
+
+                <button type="submit" class="btn-initialize register">
+                    REGISTER FOR ACCESS <i class="fas fa-shield-alt"></i>
+                </button>
+
+                <div class="login-divider">
+                    Already have an account? <a href="#" onclick="router.navigateTo('/login'); return false;">Sign In</a>
+                </div>
+
+                <div class="system-status">
+                    <span class="status-dot success"></span>
+                    <span>SYSTEM ONLINE: READY FOR PROVISIONING</span>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                POWERED BY HEAR AI TECHNOLOGY
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 작성 모달 -->
+    <div id="post-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Post</h3>
+                <button class="modal-close" onclick="closePostForm()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="post-form">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="post-category" class="form-control">
+                            <option value="general">Free Board</option>
+                            <option value="health">Health Info</option>
+                            <option value="question">Q&amp;A</option>
+                            <option value="review">Diagnosis Review</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="post-title" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" id="post-author" class="form-control" placeholder="Nickname (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea id="post-content" class="form-control" rows="8" placeholder="Enter content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 설정 모달 -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content" style="max-width: 480px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <button class="modal-close" onclick="closeSettingsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h4 class="settings-section-title">Profile</h4>
+                    <div class="form-group">
+                        <label>Nickname</label>
+                        <input type="text" id="settings-username" class="form-control" placeholder="Enter your nickname">
+                        <p class="settings-info">Used when writing posts and comments.</p>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4 class="settings-section-title">Data</h4>
+                    <button class="btn btn-secondary btn-sm" onclick="clearSavedPosts()" style="width:100%;">
+                        <i class="fas fa-trash"></i> Clear Saved Posts
+                    </button>
+                </div>
+                <button class="btn btn-primary" onclick="saveSettings()" style="width:100%; margin-top:1rem;">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HCI DocTor. AI Medical Diagnosis Assistant.</p>
+            <p>Powered by Google HAI-DEF | MedGemma & HeAR</p>
+        </div>
+    </footer>
+
+    <!-- Router Scripts (Load Order Important!) -->
+    <script src="js/router.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
