@@ -902,7 +902,7 @@ function renderXrayAnalysisPage() {
                 </button>
                 <div>
                     <div style="font-size:1.05rem; font-weight:700; letter-spacing:-0.01em;">Chest X-ray Analysis</div>
-                    <div style="font-size:0.72rem; color:#64748b;">MedGemma 1.5 4B LoRA &nbsp;·&nbsp; Accuracy 67.21% &nbsp;·&nbsp; Normal / Abnormal</div>
+                    <div style="font-size:0.72rem; color:#64748b;">MedGemma 1.5 4B LoRA &nbsp;·&nbsp; Accuracy 72.38% &nbsp;·&nbsp; Normal / Abnormal</div>
                 </div>
             </header>
 
