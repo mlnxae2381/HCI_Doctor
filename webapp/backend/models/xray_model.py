@@ -1,6 +1,6 @@
 """
 X-ray 이미지 분석 모델 (MedGemma LoRA)
-상태: 학습 완료 (Step 3600, Val Loss: 0.0929)
+정확도: 72.38% (테스트 11,213샘플)
 분류: Normal / Abnormal
 """
 
@@ -171,7 +171,7 @@ class XrayModel:
             'confidence': confidence,
             'explanation': generated_text,
             'model': 'MedGemma LoRA',
-            'accuracy': 'TBD (testing in progress)',
+            'accuracy': '72.38%',
             'training_info': {
                 'checkpoint': 'step-3600',
                 'val_loss': 0.0929,

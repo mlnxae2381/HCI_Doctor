@@ -9,7 +9,7 @@ A full-stack medical AI web application built for the **Kaggle MedGemma Impact C
 | Modality | Model | Task | Accuracy |
 |---|---|---|---|
 | CT Scan | MedGemma 1.5 4B + LoRA | Normal / Benign / Malignant | **87.35%** |
-| Chest X-ray | MedGemma 1.5 4B + LoRA | Normal / Abnormal | **67.21%** |
+| Chest X-ray | MedGemma 1.5 4B + LoRA | Normal / Abnormal | **72.38%** |
 | Breathing/Cough Audio | Google HeAR + MLP | Normal / Abnormal | **96.74%** |
 
 ---
@@ -139,6 +139,7 @@ Open `webapp/frontend/index.html` in a browser, or serve it via any static serve
 - Base model: `google/medgemma-1.5-4b-it`
 - Training: LoRA fine-tuning on NIH CXR-14 subset
 - Checkpoint: step-3600, val loss: **0.0929**
+- Test accuracy: **72.38%** (11,213 samples) — Normal 74.19%, Abnormal 70.28%
 - Classes: Normal / Abnormal
 
 ### Acoustic Model (HeAR + MLP)
