@@ -73,7 +73,7 @@ def health():
         'version': '1.0.0',
         'models': {
             'ct': 'MedGemma LoRA (87.35% acc)',
-            'xray': 'MedGemma LoRA (67.21% acc)',
+            'xray': 'MedGemma LoRA (72.38% acc)',
             'cough': 'HeAR (96.74% acc)',
             'breathing': 'HeAR (96.74% acc)'
         }
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     logger.info("Starting server on http://0.0.0.0:3003")
     logger.info("Models:")
     logger.info("  - CT Analysis: MedGemma LoRA (87.35% accuracy)")
-    logger.info("  - X-ray Analysis: MedGemma LoRA (67.21% accuracy)")
+    logger.info("  - X-ray Analysis: MedGemma LoRA (72.38% accuracy)")
     logger.info("  - Cough Analysis: HeAR (96.74% accuracy)")
     logger.info("  - Breathing Analysis: HeAR (96.74% accuracy)")
     logger.info("=" * 60)
